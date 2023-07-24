@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <div id="timer"></div>
+
+  <script>
+    function countdownTimer() {
+      var deadline = new Date("July 13, 2023 00:00:00").getTime();
+
+      function updateTimer() {
+        var now = new Date().getTime();
+        var remainingTime = deadline - now;
+        //  console.log(remainingTime)
+        var days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        var timerDisplay = document.getElementById("timer");
+        timerDisplay.innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+        if (remainingTime > 0) {
+          setTimeout(updateTimer, 1000);
+        } else {
+          timerDisplay.innerHTML = "Countdown finished!";
+        }
+      }
+
+      updateTimer();
+    }
+
+    countdownTimer();
+  </script>
+</body>
+</html>
